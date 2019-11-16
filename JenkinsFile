@@ -40,11 +40,22 @@ pipeline {
 		
 	 stage('Email Notification') {
           steps {
-            mail bcc: '', body: '''Hi ArcTic your project status is.${DEFAULT_CONTENT}
-            Jenkins Log.''', cc: '', from: '', replyTo: '', subject: '${DEFAULT_SUBJECT}', to: 'benbrahimwala18@gmail.com'
+            mail bcc: '', body: '''Hi ArcTic your project Build is done..
+            Jenkins.''', cc: '', from: '', replyTo: '', subject: 'SUCCESS', to: 'benbrahimwala18@gmail.com'
           }
         
         }
 		
+    }
+    
+    post {
+        always {
+            echo 'I will always say Hello again!'
+            
+             emailext body: "${DEFAULT_CONTENT}",
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+                subject: "${DEFAULT_SUBJECT}"
+            
+        }
     }
 }
