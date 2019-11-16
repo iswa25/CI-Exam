@@ -1,0 +1,61 @@
+pipeline {
+    agent {
+        label "master"
+    }
+	
+	
+    environment {
+        
+        NEXUS_VERSION = "nexus2"
+        NEXUS_PROTOCOL = "http"
+        NEXUS_URL = "http://localhost:8081"
+        NEXUS_REPOSITORY = "releases"
+        NEXUS_CREDENTIAL_ID = "admin:admin123"
+		
+	}
+
+    stages {
+        stage('CHECKOUT') {
+            steps {
+                echo 'We are running git clone command ...'
+				script {
+                    git 'https://github.com/iswa25/CI-exam.git';
+                }
+            }
+        }
+		 
+		
+		stage('BUILD') {
+            steps {
+                echo 'We are using Windows batch to build our maven project in order to install the package into the local repo /.m2...'
+				script{
+					bat "mvn install"
+				
+				}
+            }
+        }
+		
+        stage('TEST') {
+            steps {
+                echo 'We are testing to run tests using Windows batch also...'
+				script{
+					bat "mvn test"
+				
+				}
+            }
+        }
+        stage('DEPLOY') {
+            steps {
+                echo 'And finally we are deploying th e package within a remote repository Nexus version 2 using windows batch...'
+				script{
+					bat "mvn deploy"
+				
+				}
+				echo 'End!!'
+            }
+        }
+		
+		
+		
+    }
+}
