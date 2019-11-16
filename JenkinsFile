@@ -36,16 +36,7 @@ pipeline {
 				}
             }
         }
-        stage('DEPLOY') {
-            steps {
-                echo 'And finally we are deploying th e package within a remote repository Nexus version 2 using windows batch...'
-				script{
-					bat "mvn deploy"
-				
-				}
-				echo 'End!!'
-            }
-        }
+      
 		
 		
 		
