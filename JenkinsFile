@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'We are using Windows batch to build our maven project in order to install the package into the local repo /.m2...'
 				script{
-					bat "mvn install"
+					bat "mvn clean install"
 				
 				}
             }
@@ -38,7 +38,13 @@ pipeline {
         }
       
 		
-		
+	 stage('Email Notification') {
+          steps {
+            mail bcc: '', body: '''Hi ArcTic your project status is.
+            Jenkins.''', cc: '', from: '', replyTo: '', subject: 'Build succed', to: 'benbrahimwala18@gmail.com'
+          }
+        
+        }
 		
     }
 }
