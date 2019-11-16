@@ -9,7 +9,7 @@ pipeline {
         NEXUS_VERSION = "nexus2"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "http://localhost:8081"
-        NEXUS_REPOSITORY = "releases"
+        NEXUS_REPOSITORY = "Releases"
         NEXUS_CREDENTIAL_ID = "admin:admin123"
 		
 	}
@@ -24,12 +24,13 @@ pipeline {
             }
         }
 		 
+
 		
 		stage('BUILD') {
             steps {
                 echo 'We are using Windows batch to build our maven project in order to install the package into the local repo /.m2...'
 				script{
-					bat "mvn install"
+					bat "mvn clean install"
 				
 				}
             }
