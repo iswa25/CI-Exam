@@ -40,23 +40,12 @@ pipeline {
 		
 	 stage('Email Notification') {
           steps {
-            mail bcc: '', body: '''Hi ArcTic your project Build is done..
-            Jenkins.''', cc: '', from: '', replyTo: '', subject: 'SUCCESS', to: 'benbrahimwala18@gmail.com'
+           	 emailext attachLog: true, body: '', recipientProviders: [developers()], subject: 'BUILD is done !!!', to: 'benbrahimwala18@gmail.com'
           }
         
         }
 		
     }
     
-    post {
-        always {
-            echo 'I will always say Hello again!'
-            
-	     
-             	emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            
-        }
-    }
+   
 }
