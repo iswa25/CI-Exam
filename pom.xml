@@ -38,11 +38,7 @@
 			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
 		</repository>
 	</distributionManagement>
-  <scm>
-	<connection>scm:git:git@github.com:iswa25/CI-Exam.git</connection>
-	<url>scm:git:git@github.com:iswa25/CI-Exam.git</url>
-	<developerConnection>scm:git:git@github.com:iswa25/CI-Exam.git</developerConnection>
-  </scm>
+
   
   
   
