@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     
-                    bat "mvn deploy"
+                    bat "mvn deploy -Dmaven.test.skip=true"
                 }
             }
         }
