@@ -36,17 +36,11 @@ pipeline {
 				}
             }
         }
-	  stage("DEPLOY") {
-            steps {
-                script {
-                    
-                    bat "mvn deploy"
-                }
-            }
-        }
-      
+	  
+	  
+	  
 		
-	 stage('Email Notification') {
+	stage('Email Notification') {
           steps {
            	 emailext attachLog: true, body: "Please go to ${BUILD_URL} and verify the build", recipientProviders: [developers()], subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) ", to: 'benbrahimwala18@gmail.com'
           }
